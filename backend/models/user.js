@@ -43,7 +43,7 @@ const userSchema = new schema({
     type:Array,
     default:[]
   }
-})
+},{timestamps:true})
 
 
 userSchema.virtual("password")
