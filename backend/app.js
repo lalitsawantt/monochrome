@@ -7,6 +7,8 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const authRoutes = require('./routes/auth');
+const userRoutes = require('./routes/user');
+const categoryRoutes = require('./routes/category');
 // CONNECTING TO DB
 try{
   mongoose.connect(process.env.DATABASE, {
@@ -28,6 +30,8 @@ app.use(cookieParser());
 app.use(cors());
 
 app.use("/api", authRoutes);
+app.use("/api", userRoutes);
+app.use("/api", categoryRoutes);
 // PORT
 const PORT = process.env.PORT || 8000;
 
