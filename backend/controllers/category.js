@@ -61,24 +61,6 @@ exports.getAllCategories = (req, res) => {
 }
 
 exports.updateCategory = (req, res) => {
-  
-  // const cate = req.body;
-  // cate.name = req.body.name;
-  // // Since the category object in request is passed by from the middleware, we can directly use it as a mongo object
-  // cate.save((err, updatedCategory) => {
-  //   if(err){
-  //     return res.status(400).json({
-  //       error:"Failed to update category"
-  //     })
-  //   }
-  //   if(!updatedCategory){
-  //     return res.status(404).json({
-  //       error:"No category found"
-  //     })
-  //   }
-  //   res.json(updatedCategory);
-  // })
-  // try{
 
     if(req.category.name !== req.body.name){
       Category.find({"name":req.category.name}).exec((err, cat) => {
@@ -103,11 +85,6 @@ exports.updateCategory = (req, res) => {
         error:"New name same as old name, cannot update"
       });
     }
-  // }catch(e){
-
-  //   console.log("Error in updating category : ", e);
-  //   return res.status(400);
-  // }
 }
 
 exports.removeCategory = (req, res) => {
