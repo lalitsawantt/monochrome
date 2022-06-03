@@ -13,10 +13,10 @@ exports.getCategoryById = (req,res,next,id) => {
         error:"Category not found"
       })
     }
+    console.log("req.cate : ", cate);
     req.category = cate;
-    console.log("middle ware category assignment : ", req.category);
+    next();
   })
-  next();
 }
 
 exports.createCategory = (req, res) => {
@@ -64,7 +64,7 @@ exports.updateCategory = (req, res) => {
 
     if(req.category.name !== req.body.name){
       Category.find({"name":req.category.name}).exec((err, cat) => {
-        console.log("ERR : ", err , " \n\n\n\n\n CAT  : ", cat);
+        // console.log("ERR : ", err , " \n\n\n\n\n CAT  : ", cat);
       })
       Category.findOneAndReplace({"name":req.category.name},{"name":req.body.name}, {new: true}, (err, category) => {
         if(err){
@@ -89,19 +89,20 @@ exports.updateCategory = (req, res) => {
 
 exports.removeCategory = (req, res) => {
   const category = req.category;
-  category.remove((err, category) => {
+  console.log("REQ>PARAMS>ID",req.category);
+  category.remove({_id:req.category._id},(err, category) => {
     if(err){
       return res.status(400).json({
         error:`Failed to remove category ${category}`
       })
     }
-    if(!updatedCategory){
+    if(!category){
       return res.status(404).json({
         error:"No category found"
       })
     }
     res.status(200).json({
-      message: `${category} deleted successfully`
+      message: `${category.name} deleted successfully`
     })
   })
 }
