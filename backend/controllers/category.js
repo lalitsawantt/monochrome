@@ -89,7 +89,6 @@ exports.updateCategory = (req, res) => {
 
 exports.removeCategory = (req, res) => {
   const category = req.category;
-  console.log("REQ>PARAMS>ID",req.category);
   category.remove({_id:req.category._id},(err, category) => {
     if(err){
       return res.status(400).json({
