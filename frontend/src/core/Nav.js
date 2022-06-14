@@ -16,23 +16,24 @@ const Nav = () => {
           <Link className="nav-link links" to="/" style={{"textDecoration":'none'}}>Home</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link links" to="/">Cart</Link>
+          <Link className="nav-link links" to="/cart">Cart</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link links" to="/">Dashboard</Link>
+          <Link className="nav-link links" to="/dashboard">Dashboard</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link links" to="/">Admin Dashboard</Link>
+          <Link className="nav-link links" to="/admindashboard">Admin Dashboard</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link links" to="/">Sign up</Link>
+          <Link className="nav-link links" to="/signup">Sign up</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link links" to="/">Sign out</Link>
+          <Link className="nav-link links" to="/signin">Sign In</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link links" to="/">Sign In</Link>
+          <Link className="nav-link links" to="/signout">Sign out</Link>
         </li>
+
       </ul>
     </div>
   )

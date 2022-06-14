@@ -44,3 +44,10 @@ body{
   color: var(--light-gold);
   font-size: 1.03rem;
 }
+
+footer{
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+}
