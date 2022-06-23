@@ -53,16 +53,26 @@ exports.signin = (req, res) => {
 }
 
 exports.signup = (req, res) => {
-  const errors = validationResult(req);
-  if(!errors.isEmpty()){
-    return res.status(422).json({
-      err: errors.array()[0].msg,
-      param: errors.array()[0].param
+  try{
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+      const error = {
+        err: errors.array()[0].msg,
+        param: errors.array()[0].param
+      }
+      res.status(400).json({
+        error: error
+      })
+    }
+  }catch(e){
+    res.status(500).json({
+      error: e
     })
   }
+  // Creating the user
   const user = new User(req.body);
   try{
-    user.save((err, user) => {
+    user.save((err, usr) => {
       if(err){
         let errs = err.toString().substring(18,24);
         if(errs === "E11000"){
@@ -75,17 +85,16 @@ exports.signup = (req, res) => {
           })
         }
       }
-      res.json({
-        name:user.name,
-        email:user.email,
-        id:user._id    
+      console.log("USER CREATED : ", usr, " : : :err : ", err );
+      res.status(200).json({
+        name:usr.name,
+        email:usr.email,
+        id:usr._id    
       });
     });
   }catch(e){
     console.log("Something went wrong : ", e);
   }
-
-
 }
 
 // Protected routes

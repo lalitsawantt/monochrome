@@ -1,15 +1,18 @@
- import React from 'react'
+import React from 'react'
 import Nav from './Nav'
- 
+
  const Base = ({
   title="Monochrome",
   description="A collection of images clicked by me",
   className="bg-light text-dark",
   children
  }) => {
+
+
    return (
      <div>
        <Nav/>
+       {/* <ToastContainer/> */}
         <div className="container-fluid">
           <div className="jumbotron bg-light text-dark text-center ">
             <h2 className="display-4 header-custom">{title}</h2>

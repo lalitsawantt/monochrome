@@ -1,15 +1,16 @@
 import { API } from "../../BaseUrl";
 // TODO: Make a parent method for fetch
 export const signup = user => {
+  console.log("POST DATA : ", user);
   return fetch(`${API}/signup`, {
     method:"POST",
     headers:{
-      Accept: "application/json",
-      "Content-Type":"application/json"
+      "Accept": "application/json",
+      "Content-Type":"application/json",
     },
     body: JSON.stringify(user),
   })
-  .then((response) => {return response.json})
+  .then((response) => (response.json()))
   .catch((error) => console.log("ERROR IN SIGNUP : ", error));
 }
 

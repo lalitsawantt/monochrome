@@ -23,13 +23,18 @@ try{
   console.log("Something went wrong with the database connection : ", e);
 };
 
+let corsOptions = {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200, // For legacy browser support
+  methods: "GET, PUT, POST, DELETE, OPTIONS"
+}
 // ROUTES
 
 // MIDDLEWARES
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use("/api", authRoutes);
 app.use("/api", userRoutes);
